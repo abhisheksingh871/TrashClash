@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Custom Base</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Add Custom Base</h2>
+        <form th:action="@{/admin/add-base}" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="about">About</label>
+                <textarea class="form-control" id="about" name="about" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="townHallId">Town Hall</label>
+                <select class="form-control" id="townHallId" name="townHallId" required>
+                    <option th:each="townHall : ${townHalls}" th:value="${townHall.id}" th:text="${townHall.name}">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="imageLinks">Image Links (comma separated)</label>
+                <input type="text" class="form-control" id="imageLinks" name="imageLinks" required>
+            </div>
+            <div class="form-group">
+                <label for="baseDownloadLink">Base Download Link</label>
+                <input type="text" class="form-control" id="baseDownloadLink" name="baseDownloadLink" required>
+            </div>
+            <div class="form-group">
+                <label for="baseTypes">Base Types</label>
+                <select multiple class="form-control" id="baseTypes" name="baseTypes">
+                    <option th:each="baseType : ${baseTypes}" th:value="${baseType.id}" th:text="${baseType.name}">
+                    </option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
